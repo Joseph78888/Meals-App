@@ -8,11 +8,11 @@ class MealItemTrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       children: [
         Icon(icon, size: 17, color: Colors.white),
         const SizedBox(width: 6),
-        Text(label, style:  TextStyle(color: Colors.white),),
+        Text(label, style: TextStyle(color: Colors.white)),
       ],
     );
   }
