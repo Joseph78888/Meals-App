@@ -5,9 +5,9 @@ import 'package:meals/presentaion/screens/meal_details.dart';
 import 'package:meals/presentaion/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.title, required this.meals});
+  const MealsScreen({super.key, this.title, required this.meals});
 
-  final String title;
+  final String? title;
   final List<Meal> meals;
 
   void _selectMeal(BuildContext context, Meal meal) {
@@ -52,9 +52,18 @@ class MealsScreen extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: content,
-    );
+    /// this Block cheke if the title set or not => to handel start button on BottomNavigationBarItem so that we don't get tow app bars.
+    {
+      if (title == null) {
+        // return the content without scaffold
+        return content;
+      }
+
+      // return the content with scaffold
+      return Scaffold(
+        appBar: AppBar(title: Text(title!)),
+        body: content,
+      );
+    }
   }
 }
