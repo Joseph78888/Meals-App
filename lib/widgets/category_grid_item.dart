@@ -5,21 +5,15 @@ import 'package:meals/models/category.dart';
 import 'package:meals/screens/meals.dart';
 
 class CategoryGridItem extends StatelessWidget {
-  const CategoryGridItem({super.key, required this.category});
+  const CategoryGridItem({super.key, required this.category, required this.onSelectCategoyr});
 
   final Category category;
+  final void Function() onSelectCategoyr;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (ctx) => MealsScreen(
-            title: category.title,
-            meals: dummyMeals,
-          ),
-        ),
-      ),
+      onTap:onSelectCategoyr,
       splashColor: Theme.of(context).colorScheme.primary,
       borderRadius: BorderRadius.circular(16),
       child: Container(
