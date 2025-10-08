@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/presentaion/screens/categories.dart';
 import 'package:meals/presentaion/screens/meals.dart';
+import 'package:meals/presentaion/widgets/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -15,6 +16,7 @@ class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0; // hold page index
   final List<Meal> _favoriteMeals = []; // List that hold _favoriteMeals
 
+  /// improving UX by adding snackBar when add/delete meal from favorite
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
@@ -67,6 +69,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(activePageTitle)),
+      drawer: MainDrawer(),
       body: activePage, // current active page
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
