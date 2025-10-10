@@ -2,14 +2,26 @@ import 'package:flutter/material.dart';
 
 import 'package:meals/models/category.dart';
 
+/// Widget representing a single category item in the categories grid.
+/// 
+/// Displays a category with its title and color gradient background.
+/// Handles tap events for category selection and provides visual
+/// feedback with splash effects.
 class CategoryGridItem extends StatelessWidget {
+  /// Creates a category grid item widget.
+  /// 
+  /// [category] contains the category data to display.
+  /// [onSelectCategoyr] callback triggered when the category is tapped.
   const CategoryGridItem({
     super.key,
     required this.category,
     required this.onSelectCategoyr,
   });
 
+  /// The category data to display in this grid item.
   final Category category;
+  
+  /// Callback function called when the category item is tapped.
   final void Function() onSelectCategoyr;
 
   @override

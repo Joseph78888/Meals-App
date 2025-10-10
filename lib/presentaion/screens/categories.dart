@@ -6,19 +6,35 @@ import 'package:meals/presentaion/screens/meals.dart';
 import 'package:meals/presentaion/widgets/category_grid_item.dart';
 import 'package:meals/models/category.dart';
 
+/// Screen displaying meal categories in a grid layout.
+/// 
+/// Shows all available meal categories with their associated colors.
+/// When a category is tapped, navigates to a filtered list of meals
+/// belonging to that category.
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key, required this.onToggleFavorite});
+  /// Creates the categories screen.
+  /// 
+  /// [availableMeals] are filtered based on current dietary preferences.
+  /// [onToggleFavorite] callback for managing favorite meals.
+  const CategoriesScreen({super.key, required this.onToggleFavorite, required this.availableMeals});
 
-  final void Function(Meal meal)
-  onToggleFavorite; // pointer to _toggleMealFavoriteStatus function in tabsScreen widget.
+  /// List of meals available after applying dietary filters.
+  final List<Meal> availableMeals;
+  
+  /// Callback function for toggling meal favorite status.
+  final void Function(Meal meal) onToggleFavorite;
 
-  /// triegerd when select (tap) category
+  /// Handles category selection and navigation to filtered meals.
+  /// 
+  /// Filters meals by the selected category ID and navigates to
+  /// the meals screen with the filtered results.
   void _selectCategoyr(BuildContext context, Category category) {
-    // filtering the list base on category id
-    final filteredMeals = dummyMeals
+    // Filter meals based on category ID
+    final filteredMeals = availableMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
-    // navigate to Meals Screen
+    
+    // Navigate to Meals Screen with filtered results
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => MealsScreen(
