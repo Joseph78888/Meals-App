@@ -216,7 +216,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 - GitHub: [@Joseph78888](https://github.com/Joseph78888)
-- Email: ypusifkhalid544@gmail.com
+- Email: yousifkhalid544@gmail.com
 
 ## 🙏 Acknowledgments
 
