@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:meals/models/meal.dart';
 import 'package:meals/presentaion/screens/categories.dart';
+import 'package:meals/presentaion/screens/filters.dart';
 import 'package:meals/presentaion/screens/meals.dart';
 import 'package:meals/presentaion/widgets/main_drawer.dart';
 
@@ -33,12 +34,12 @@ class _TabsScreenState extends State<TabsScreen> {
       setState(() {
         _favoriteMeals.remove(meal);
       });
-      _showSnackBar('Meal deleted from favorites');
+      _showSnackBar('Meal Deleted From Favorites');
     } else {
       setState(() {
         _favoriteMeals.add(meal);
       });
-      _showSnackBar('Meal added to favorites');
+      _showSnackBar('Meal Added To Favorites');
     }
   }
 
@@ -47,6 +48,16 @@ class _TabsScreenState extends State<TabsScreen> {
     setState(() {
       _selectedPageIndex = index;
     });
+  }
+
+  void _setScreenForListTile(String identefier) {
+    Navigator.of(context).pop(); // close drawer
+
+    if (identefier == 'filters') {
+      Navigator.of(
+        context,
+      ).push(MaterialPageRoute(builder: (context) => FiltersScreen()));
+    }
   }
 
   @override
@@ -58,27 +69,30 @@ class _TabsScreenState extends State<TabsScreen> {
 
     var activePageTitle = 'Categories'; // hold activePageTitle
 
-    /// switch to MealsScreen when Favorites buttom pressed in the BottomNavigationBar.
+    /// switch to filtered MealsScreen based on favourites when Favorites buttom pressed in the BottomNavigationBar.
     if (_selectedPageIndex == 1) {
       activePage = MealsScreen(
-        meals: _favoriteMeals,
+        meals: _favoriteMeals, // filtered MealsScreen based on favourites
         onToggleFavorite: _toggleMealFavoriteStatus,
       );
-      activePageTitle = 'Your Favorites';
+      activePageTitle = 'Your Favorites'; // appBar title
     }
 
     return Scaffold(
       appBar: AppBar(title: Text(activePageTitle)),
-      drawer: MainDrawer(),
+      drawer: MainDrawer(onSelectMeals: _setScreenForListTile),
       body: activePage, // current active page
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
         onTap: _selectPage,
         items: const [
+          // for Categories buttom
           BottomNavigationBarItem(
             icon: Icon(Icons.set_meal),
             label: 'Categories',
           ),
+
+          // for Favorites buttom
           BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Favorites'),
         ],
       ),

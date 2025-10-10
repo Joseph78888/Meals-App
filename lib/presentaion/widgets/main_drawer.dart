@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({super.key});
+  const MainDrawer({super.key, required this.onSelectMeals});
+
+  final void Function(String identefier) onSelectMeals; // handel navigation for listTiles
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +12,7 @@ class MainDrawer extends StatelessWidget {
         children: [
           DrawerHeader(
             padding: EdgeInsetsGeometry.all(20),
+
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
@@ -22,6 +25,7 @@ class MainDrawer extends StatelessWidget {
                 end: Alignment.bottomRight,
               ),
             ),
+
             child: Row(
               children: [
                 Icon(
@@ -29,9 +33,53 @@ class MainDrawer extends StatelessWidget {
                   size: 48,
                   color: Theme.of(context).colorScheme.primary,
                 ),
-                const SizedBox(width: 18,),
-                Text('data'),
+
+                const SizedBox(width: 18),
+                Text(
+                  'Cooking Up!',
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
               ],
+            ),
+          ),
+
+          ListTile(
+            onTap: () {
+              onSelectMeals('meals');
+            },
+            leading: Icon(
+              Icons.restaurant,
+              size: 26,
+              color: Theme.of(context).colorScheme.onBackground,
+            ),
+
+            title: Text(
+              'Meals',
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                color: Theme.of(context).colorScheme.onBackground,
+                fontSize: 24,
+              ),
+            ),
+          ),
+
+          ListTile(
+            onTap: () {
+              onSelectMeals('filters');
+            },
+            leading: Icon(
+              Icons.settings,
+              size: 26,
+              color: Theme.of(context).colorScheme.onBackground,
+            ),
+
+            title: Text(
+              'filters',
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                color: Theme.of(context).colorScheme.onBackground,
+                fontSize: 24,
+              ),
             ),
           ),
         ],
