@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
+
 import 'package:meals/models/meal.dart';
 import 'package:meals/presentaion/screens/meal_details.dart';
 import 'package:meals/presentaion/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.title, required this.meals});
+  const MealsScreen({
+    super.key,
+    this.title,
+    required this.meals,
+    required this.onToggleFavorite,
+  });
 
-  final String title;
+  final String? title;
   final List<Meal> meals;
+  final void Function(Meal meal)
+  onToggleFavorite; // pointer to _toggleMealFavoriteStatus function in tabsScreen widget.
 
   void _selectMeal(BuildContext context, Meal meal) {
-    Navigator.of(
-      context,
-    ).push(MaterialPageRoute(builder: (ctx) => MealDetailsScreen(meal: meal)));
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (ctx) =>
+            MealDetailsScreen(meal: meal, onToggleFavorite: onToggleFavorite),
+      ),
+    );
   }
 
   @override
@@ -51,9 +62,18 @@ class MealsScreen extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: content,
-    );
+    /// this Block cheke if the title set or not => to handel start button on BottomNavigationBarItem so that we don't get tow app bars.
+    {
+      if (title == null) {
+        // return the content without scaffold
+        return content;
+      }
+
+      // return the content with scaffold
+      return Scaffold(
+        appBar: AppBar(title: Text(title!)),
+        body: content,
+      );
+    }
   }
 }

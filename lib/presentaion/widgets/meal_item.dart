@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meals/models/meal.dart';
-import 'package:meals/presentaion/screens/meal_details.dart';
-import 'package:meals/presentaion/widgets/meal_item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
+
+import 'package:meals/models/meal.dart';
+import 'package:meals/presentaion/widgets/meal_item_trait.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({super.key, required this.meal, required this.onSelectMeal});
@@ -19,8 +19,6 @@ class MealItem extends StatelessWidget {
     return meal.affordability.name[0].toUpperCase() +
         meal.affordability.name.substring(1);
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
