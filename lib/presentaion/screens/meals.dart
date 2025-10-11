@@ -45,11 +45,12 @@ class MealsScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Uh No ... nothing here!',
+              'uh no ... nothing here!',
               style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                 color: Theme.of(context).colorScheme.onBackground,
               ),
             ),
+            
             const SizedBox(height: 16),
             Text(
               'try selecting a different category',
@@ -62,7 +63,8 @@ class MealsScreen extends StatelessWidget {
       );
     }
 
-    /// this Block cheke if the title set or not => to handel start button on BottomNavigationBarItem so that we don't get tow app bars.
+    /// this Block cheke if the title set or not => to handel
+    /// start button on BottomNavigationBarItem so that we don't get two app bars.
     {
       if (title == null) {
         // return the content without scaffold

@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:meals/models/category.dart';
 import 'package:meals/models/meal.dart';
 
+/// Sample data for meal categories.
+/// 
+/// Contains predefined categories with unique IDs, titles, and colors
+/// for organizing meals by cuisine type and dietary preferences.
+/// Note: There appears to be duplicate entries in the current data.
 const availableCategories = [
   Category(id: 'c1', title: 'Italian', color: Colors.purple),
   Category(id: 'c2', title: 'Quick & Easy', color: Colors.red),
@@ -26,6 +31,11 @@ const availableCategories = [
   Category(id: 'c10', title: 'Summer', color: Colors.teal),
 ];
 
+/// Sample meal data with comprehensive recipe information.
+/// 
+/// Contains detailed meal recipes including ingredients, cooking steps,
+/// dietary information, complexity levels, and affordability ratings.
+/// Each meal is associated with one or more categories for organization.
 const dummyMeals = [
   Meal(
     id: 'm1',

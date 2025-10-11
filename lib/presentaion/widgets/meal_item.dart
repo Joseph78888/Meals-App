@@ -4,17 +4,31 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/presentaion/widgets/meal_item_trait.dart';
 
+/// Widget representing a single meal item in a list or grid.
+/// 
+/// Displays meal image, title, and key attributes (duration, complexity, affordability).
+/// Includes smooth image loading with placeholder and handles tap events
+/// for navigation to meal details.
 class MealItem extends StatelessWidget {
+  /// Creates a meal item widget.
+  /// 
+  /// [meal] contains all the meal data to display.
+  /// [onSelectMeal] callback triggered when the meal is tapped.
   const MealItem({super.key, required this.meal, required this.onSelectMeal});
 
+  /// The meal data to display in this item.
   final Meal meal;
+  
+  /// Callback function called when the meal item is tapped.
   final void Function(Meal meal) onSelectMeal;
 
+  /// Converts complexity enum to capitalized string for display.
   String get complexityText {
     return meal.complexity.name[0].toUpperCase() +
         meal.complexity.name.substring(1);
   }
 
+  /// Converts affordability enum to capitalized string for display.
   String get affordabilityText {
     return meal.affordability.name[0].toUpperCase() +
         meal.affordability.name.substring(1);
