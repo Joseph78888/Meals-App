@@ -7,15 +7,16 @@ import 'package:meals/presentaion/widgets/category_grid_item.dart';
 import 'package:meals/models/category.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key, required this.onToggleFavorite});
+  const CategoriesScreen({super.key, required this.onToggleFavorite, required this.availableMeals});
 
+  final List<Meal> availableMeals;
   final void Function(Meal meal)
   onToggleFavorite; // pointer to _toggleMealFavoriteStatus function in tabsScreen widget.
 
   /// triegerd when select (tap) category
   void _selectCategoyr(BuildContext context, Category category) {
     // filtering the list base on category id
-    final filteredMeals = dummyMeals
+    final filteredMeals = availableMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
     // navigate to Meals Screen
